@@ -1,13 +1,4 @@
-class Passenger < ActiveRecord::Base
-    has_many :tickets
-    has_many :flights, through: :tickets 
-end 
-    
-
-
-
-
-
+class Passenger
 
     attr_accessor :name, :passenger_id
 
@@ -22,13 +13,15 @@ end
         @name = name
         @@all << self 
     end
-
+    
+    # has_many :tickets
     def tickets
         Ticket.all.select do|ticket|
             ticket.passenger_id = self.id
         end 
     end  
-
+    
+    # has_many :flights, through: :tickets 
     def flights 
         ticket_instances = self.tickets # Returns all the ticket instances associated with this passenger
 
