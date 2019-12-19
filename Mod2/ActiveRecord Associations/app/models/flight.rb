@@ -14,13 +14,13 @@ class Flight
         @@all << self 
     end
 
-
+    # The has_many :tickets
     def tickets
         Ticket.all.select do |ticket|
             ticket.flight_id == self.flight_id
         end 
     end 
-
+    # The has_many :passengers, through: :tickets 
     def passengers
         ticket_instances = self.tickets
         ticket_instances.map do |ticket_instance|
